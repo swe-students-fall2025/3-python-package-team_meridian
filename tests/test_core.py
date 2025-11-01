@@ -16,4 +16,19 @@ def test_get_color():
     assert isinstance(color, str)
     assert len(color) > 0
 
+def test_get_tarot_reading_basic():
+    text = get_tarot_reading()
+    assert isinstance(text, str)
+    assert ":" in text
+    assert len(text) > 0
+
+def test_get_tarot_reading_with_intent():
+    text = get_tarot_reading(intent="needing_clarity")
+    assert isinstance(text, str)
+    assert ":" in text
+
+def test_get_tarot_reading_invalid_intent_fallback():
+    text = get_tarot_reading(intent="nonsense_value")
+    assert isinstance(text, str)
+    assert ":" in text
 
