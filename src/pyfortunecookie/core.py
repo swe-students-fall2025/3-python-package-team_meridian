@@ -1,7 +1,43 @@
+from os import nice
 import random
 from typing import Optional
 
+_TAROT = {
+    "The Fool": "New beginnings, take a leap of faith.",
+    "The Magician": "Your skills will shape reality.",
+    "The High Priestess": "Trust your intuition.",
+    "The Empress": "Abundance grows where you nurture.",
+    "The Emperor": "Structure brings stability.",
+    "The Hierophant": "Tradition and guidance shape your path.",
+    "The Lovers": "Meaningful connections influence your decisions.",
+    "The Chariot": "Focus and willpower drive victory.",
+    "Strength": "Quiet courage overcomes fear.",
+    "The Hermit": "Solitude reveals deeper answers.",
+    "Wheel of Fortune": "Things will shift—be adaptable.",
+    "Justice": "Balance and fairness will restore order.",
+    "The Hanged Man": "Change perspective to see clearly.",
+    "Death": "A chapter ends so something new can begin.",
+    "Temperance": "Moderation creates harmony.",
+    "The Devil": "Beware of illusions and temptation.",
+    "The Tower": "Old structures must fall before renewal.",
+    "The Star": "Hope quietly returns.",
+    "The Moon": "The truth is hidden beneath uncertainty.",
+    "The Sun": "Joy, clarity, and success await.",
+    "Judgement": "Your past transforms into resolution.",
+    "The World": "Completion brings fulfillment."
+}
 
+_TAROT_GROUP = {
+    "seeking_change": [
+        "The Fool", "The Tower", "Death", "The Chariot", "Judgement", "Wheel of Fortune"
+    ],
+    "needing_clarity": [
+        "The High Priestess", "The Moon", "The Hermit", "The Hanged Man", "Justice"
+    ],
+    "needing_support": [
+        "Strength", "Temperance", "The Star", "The Sun", "The Empress", "The World"
+    ]
+}
 _FORTUNES = [
     "Today is a good day to start small.",
     "A pleasant surprise is waiting for you.",
@@ -37,3 +73,23 @@ def get_color(palette: str = "soft", rng: Optional[random.Random] = None) -> str
         raise ValueError(f"Unknown palette '{palette}'. Valid: {', '.join(_PALETTES)}")
     rng = rng or random
     return rng.choice(_PALETTES[palette])
+
+def get_tarot_reading(intent: Optional[str] = None, rng: Optional[random.Random] = None) -> str:
+    """
+    Return a tarot reading with slight bias based on intent.
+    Valid intents: seeking_change, needing_clarity, needing_support
+    """
+    rng = rng or random
+
+    if intent in _TAROT_GROUP:
+        if rng.random() < 0.7:
+            pool = _TAROT_GROUP[intent]
+        else:
+            pool = [c for c in _TAROT.keys() if c not in _TAROT_GROUP[intent]]
+    else:
+        pool = list(_TAROT.keys())
+
+    card = rng.choice(pool)
+    meaning = _TAROT[card]
+    return f"{card}: {meaning}"
+
