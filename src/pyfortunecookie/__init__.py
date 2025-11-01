@@ -10,4 +10,4 @@ https://docs.python.org/3/reference/import.html#regular-packages
 """
 from .core import get_fortune, get_lucky_number, get_color
 
-__all__ = ["get_fortune", "get_lucky_number", "get_color"]
+__all__ = ["get_fortune", "get_lucky_number", "get_color", "get_tarot_reading", "get_fortune_by_choice"]

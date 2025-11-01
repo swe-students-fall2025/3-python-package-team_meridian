@@ -93,3 +93,165 @@ def get_tarot_reading(intent: Optional[str] = None, rng: Optional[random.Random]
     meaning = _TAROT[card]
     return f"{card}: {meaning}"
 
+def get_fortune_by_choice(choice1: str, choice2: str, choice3: str, rng: Optional[random.Random] = None) -> dict:
+    """
+    Get a personalized fortune based on three interactive choices.
+    A fun, interactive way to get a fortune that feels tailored to you.
+    
+    Args:
+        choice1: Choose an element - "fire", "water", "earth", or "air"
+        choice2: Choose a time - "dawn", "noon", "dusk", or "midnight"  
+        choice3: Choose a symbol - "star", "moon", "sun", or "cloud"
+        rng: Optional random number generator for testing
+    
+    Returns:
+        Dictionary containing:
+            - fortune: Personalized fortune message
+            - element: The element chosen
+            - time: The time chosen
+            - symbol: The symbol chosen
+            - combination: A description of what your choices mean
+            - lucky_number: A number based on your choices
+            - lucky_color: A color based on your element
+    
+    Raises:
+        ValueError: If any choice is not from the valid options
+    
+    Example:
+        >>> result = get_fortune_by_choice("fire", "dawn", "star")
+        >>> print(result['fortune'])
+        "Your fiery spirit at dawn attracts stellar opportunities! ⭐🔥"
+    """
+    # Valid options
+    valid_elements = ["fire", "water", "earth", "air"]
+    valid_times = ["dawn", "noon", "dusk", "midnight"]
+    valid_symbols = ["star", "moon", "sun", "cloud"]
+    
+    # Validate inputs
+    if choice1 not in valid_elements:
+        raise ValueError(f"Invalid element '{choice1}'. Valid: {', '.join(valid_elements)}")
+    if choice2 not in valid_times:
+        raise ValueError(f"Invalid time '{choice2}'. Valid: {', '.join(valid_times)}")
+    if choice3 not in valid_symbols:
+        raise ValueError(f"Invalid symbol '{choice3}'. Valid: {', '.join(valid_symbols)}")
+    
+    rng = rng or random
+    
+    # Element meanings and colors
+    element_data = {
+        "fire": {
+            "trait": "passionate and energetic",
+            "color": "crimson",
+            "emoji": "🔥"
+        },
+        "water": {
+            "trait": "adaptable and intuitive",
+            "color": "teal",
+            "emoji": "💧"
+        },
+        "earth": {
+            "trait": "grounded and stable",
+            "color": "emerald",
+            "emoji": "🌍"
+        },
+        "air": {
+            "trait": "free-spirited and intellectual",
+            "color": "sky",
+            "emoji": "💨"
+        }
+    }
+    
+    # Time meanings
+    time_data = {
+        "dawn": {
+            "meaning": "new beginnings",
+            "emoji": "🌅"
+        },
+        "noon": {
+            "meaning": "peak energy and clarity",
+            "emoji": "☀️"
+        },
+        "dusk": {
+            "meaning": "reflection and transformation",
+            "emoji": "🌆"
+        },
+        "midnight": {
+            "meaning": "mystery and deep insight",
+            "emoji": "🌙"
+        }
+    }
+    
+    # Symbol meanings
+    symbol_data = {
+        "star": {
+            "meaning": "guidance and aspiration",
+            "emoji": "⭐",
+            "fortunes": [
+                "Your path is illuminated by cosmic guidance!",
+                "Reach for the stars; they're closer than you think!",
+                "Stellar opportunities align in your favor!"
+            ]
+        },
+        "moon": {
+            "meaning": "intuition and cycles",
+            "emoji": "🌙",
+            "fortunes": [
+                "Trust your intuition; it knows the way!",
+                "Embrace the cycles of change in your life!",
+                "Your inner wisdom shines like moonlight!"
+            ]
+        },
+        "sun": {
+            "meaning": "vitality and success",
+            "emoji": "☀️",
+            "fortunes": [
+                "Your energy radiates success and warmth!",
+                "Bright opportunities are on the horizon!",
+                "Your light will inspire others today!"
+            ]
+        },
+        "cloud": {
+            "meaning": "imagination and possibility",
+            "emoji": "☁️",
+            "fortunes": [
+                "Your imagination opens doors to new possibilities!",
+                "Dream big; the sky is not the limit!",
+                "Creative solutions float into your awareness!"
+            ]
+        }
+    }
+    
+    # Get data for chosen options
+    element_info = element_data[choice1]
+    time_info = time_data[choice2]
+    symbol_info = symbol_data[choice3]
+    
+    # Generate personalized fortune
+    base_fortune = rng.choice(symbol_info["fortunes"])
+    
+    # Create combination description
+    combination = (
+        f"You are {element_info['trait']}, seeking {time_info['meaning']}, "
+        f"guided by {symbol_info['meaning']}."
+    )
+    
+    # Generate lucky number based on choices (deterministic for same choices)
+    choice_seed = hash(f"{choice1}{choice2}{choice3}") % 10000
+    temp_rng = random.Random(choice_seed)
+    lucky_num = temp_rng.randint(1, 99)
+    
+    # Build full fortune message
+    full_fortune = (
+        f"{element_info['emoji']} {time_info['emoji']} {symbol_info['emoji']} "
+        f"{base_fortune}"
+    )
+    
+    return {
+        "fortune": full_fortune,
+        "element": choice1,
+        "time": choice2,
+        "symbol": choice3,
+        "combination": combination,
+        "lucky_number": lucky_num,
+        "lucky_color": element_info["color"]
+    }
