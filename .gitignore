@@ -1,3 +1,9 @@
+# ignore any cloned repos
+repos/
+
+# ignore generated reports
+reports/
+
 # mac junk
 .DS_Store
 
@@ -16,6 +22,9 @@ __pycache__/
 # C extensions
 *.so
 
+# PyPI authentication
+*pypirc
+
 # Distribution / packaging
 .Python
 build/
@@ -30,7 +39,6 @@ parts/
 sdist/
 var/
 wheels/
-pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
@@ -96,7 +104,7 @@ ipython_config.py
 # pyenv
 #   For a library or package, you might want to ignore these files since the code is
 #   intended to run in multiple environments; otherwise, check them in:
-.python-version
+# .python-version
 
 # pipenv
 #   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
