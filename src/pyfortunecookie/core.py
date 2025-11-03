@@ -55,6 +55,17 @@ _PALETTES = {
     "mono": ["black", "white", "gray"]
 }
 
+_RUNES = {
+    "Fehu": "Wealth, new beginnings, prosperity.",
+    "Uruz": "Strength and endurance.",
+    "Thurisaz": "Conflict, challenge, or protection.",
+    "Ansuz": "Wisdom, communication, divine inspiration.",
+    "Raidho": "Journey, movement, or progress.",
+    "Kenaz": "Creativity, revelation, transformation.",
+    "Gebo": "Gift, partnership, generosity.",
+    "Wunjo": "Joy, harmony, well-being."
+}
+
 def get_fortune(rng: Optional[random.Random] = None) -> str:
     """Return a random fortune sentence."""
     rng = rng or random
@@ -92,4 +103,13 @@ def get_tarot_reading(intent: Optional[str] = None, rng: Optional[random.Random]
     card = rng.choice(pool)
     meaning = _TAROT[card]
     return f"{card}: {meaning}"
+
+def get_rune_reading(n=3, rng: Optional[random.Random] = None) -> str:
+    """Return a rune reading with n runes."""
+    if n < 1:
+        raise ValueError("n must be at least 1")
+    rng = rng or random
+    selected_runes = rng.sample(list(_RUNES.keys()), k=n)
+    readings = [f"{rune}: {_RUNES[rune]}" for rune in selected_runes]
+    return readings
 
