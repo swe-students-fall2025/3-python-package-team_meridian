@@ -62,7 +62,8 @@ _LUCKY_DAYS = {
     "Tuesday": "Your determination will pay off today.",
     "Wednesday": "Communication leads to breakthroughs.",
     "Thursday": "Expansion and growth are in your favor.",
-  
+}
+
 _RUNES = {
     "Fehu": "Wealth, new beginnings, prosperity.",
     "Uruz": "Strength and endurance.",
