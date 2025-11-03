@@ -1,5 +1,6 @@
-import pytest
-from pyfortunecookie.core import get_fortune, get_lucky_number, get_color, get_tarot_reading, get_fortune_by_choice
+import pytest, random
+from pyfortunecookie.core import get_fortune, get_lucky_number, get_color
+from pyfortunecookie.core import get_tarot_reading, get_rune_reading, get_fortune_by_choice
 
 def test_get_fortune():
     result = get_fortune()
@@ -32,6 +33,25 @@ def test_get_tarot_reading_invalid_intent_fallback():
     assert isinstance(text, str)
     assert ":" in text
 
+def test_get_rune_reading_correct_format():
+    rng = random.Random(42)
+    result = get_rune_reading(n=3, rng=rng)
+    assert isinstance(result, list)
+    assert len(result) == 3
+    assert all(isinstance(r, str) for r in result)
+    assert all(":" in r for r in result)
+
+def test_get_rune_reading_uniqueness():
+    a = random.Random(100)
+    b = random.Random(100)
+    ra = get_rune_reading(n=3, rng=a)
+    rb = get_rune_reading(n=3, rng=b)
+    assert ra == rb
+
+def test_get_rune_reading_invalid_n():
+    with pytest.raises(ValueError):
+        get_rune_reading(n=0)
+        
 def test_get_fortune_by_choice_returns_dict():
         """Test that function returns a dictionary."""
         result = get_fortune_by_choice("fire", "dawn", "star")
