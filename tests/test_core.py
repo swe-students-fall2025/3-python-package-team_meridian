@@ -1,5 +1,6 @@
 import pytest, random
-from pyfortunecookie.core import get_fortune, get_lucky_number, get_color,get_tarot_reading, get_rune_reading
+from pyfortunecookie.core import get_fortune, get_lucky_number, get_color
+from pyfortunecookie.core import get_tarot_reading, get_rune_reading, get_fortune_by_choice
 
 def test_get_fortune():
     result = get_fortune()
