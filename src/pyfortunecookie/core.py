@@ -1,4 +1,3 @@
-from os import nice
 import random
 from typing import Optional
 
@@ -55,6 +54,15 @@ _PALETTES = {
     "mono": ["black", "white", "gray"]
 }
 
+_LUCKY_DAYS = {
+    "Friday": "A blessed day awaits you.",
+    "Saturday": "A day of rest and rejuvenation.",
+    "Sunday": "A day of reflection and self-care.",
+    "Monday": "A fresh start to the week brings new opportunities.",
+    "Tuesday": "Your determination will pay off today.",
+    "Wednesday": "Communication leads to breakthroughs.",
+    "Thursday": "Expansion and growth are in your favor.",
+  
 _RUNES = {
     "Fehu": "Wealth, new beginnings, prosperity.",
     "Uruz": "Strength and endurance.",
@@ -274,4 +282,22 @@ def get_fortune_by_choice(choice1: str, choice2: str, choice3: str, rng: Optiona
         "combination": combination,
         "lucky_number": lucky_num,
         "lucky_color": element_info["color"]
+    }
+
+def get_lucky_day(rng: Optional[random.Random] = None) -> dict:
+    """
+    Return a lucky day of the week and its lucky meaning.
+    
+    Returns:
+        Dictionary containing:
+            - day: The name of the lucky day
+            - message: A message about what makes this day special
+    """
+    rng = rng or random
+    day = rng.choice(list(_LUCKY_DAYS.keys()))
+    message = _LUCKY_DAYS[day]
+    
+    return {
+        "day": day,
+        "message": message
     }
