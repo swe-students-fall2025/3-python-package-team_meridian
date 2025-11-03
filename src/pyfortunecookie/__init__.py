@@ -8,6 +8,6 @@ you wish to run when the package is first imported into a program.
 For more information, see the official documentation:
 https://docs.python.org/3/reference/import.html#regular-packages
 """
-from .core import get_fortune, get_lucky_number, get_color
+from .core import get_fortune, get_lucky_number, get_color, get_lucky_day
 
-__all__ = ["get_fortune", "get_lucky_number", "get_color", "get_tarot_reading", "get_fortune_by_choice"]
+__all__ = ["get_fortune", "get_lucky_number", "get_color", "get_tarot_reading", "get_fortune_by_choice", "get_lucky_day"]

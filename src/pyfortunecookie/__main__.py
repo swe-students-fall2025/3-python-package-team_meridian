@@ -3,13 +3,18 @@ In Python packages, this file called __main__.py is run when the package is run
 directly from command line, as opposed to importing it into another program.
 """
 
-from pyfortunecookie.core import get_fortune, get_lucky_number, get_color,get_tarot_reading, get_fortune_by_choice
+from pyfortunecookie.core import get_fortune, get_lucky_number, get_color, get_tarot_reading, get_fortune_by_choice, get_lucky_day
 
 def main():
     print("🥠 Welcome to PyFortune Cookie!\n")
     print(f"Today's fortune: {get_fortune()}")
     print(f"Your lucky number: {get_lucky_number()}")
     print(f"Your lucky color: {get_color()}")
+    
+    # Get lucky day and format it nicely
+    lucky_day = get_lucky_day()
+    print(f"Your lucky day: {lucky_day['day']} - {lucky_day['message']}")
+    
     print("\n🔮 Tarot Reading:")
     print(get_tarot_reading())
 

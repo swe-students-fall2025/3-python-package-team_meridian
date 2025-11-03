@@ -1,5 +1,5 @@
 import pytest
-from pyfortunecookie.core import get_fortune, get_lucky_number, get_color, get_tarot_reading, get_fortune_by_choice
+from pyfortunecookie.core import get_fortune, get_lucky_number, get_color, get_tarot_reading, get_fortune_by_choice, get_lucky_day
 
 def test_get_fortune():
     result = get_fortune()
@@ -52,3 +52,23 @@ def test_get_fortune_by_choice_valid_elements():
             assert result["element"] == element
             assert isinstance(result["fortune"], str)
             assert len(result["fortune"]) > 0
+
+def test_get_lucky_day_returns_dict():
+    """Test that get_lucky_day returns a dictionary."""
+    result = get_lucky_day()
+    assert isinstance(result, dict)
+
+def test_get_lucky_day_has_required_keys():
+    """Test that the returned dict has all required keys."""
+    result = get_lucky_day()
+    assert "day" in result
+    assert "message" in result
+    assert isinstance(result["day"], str)
+    assert isinstance(result["message"], str)
+
+def test_get_lucky_day_valid_days():
+    """Test that the day returned is a valid day of the week."""
+    valid_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    result = get_lucky_day()
+    assert result["day"] in valid_days
+    assert len(result["message"]) > 0
