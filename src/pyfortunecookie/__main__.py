@@ -13,7 +13,7 @@ def main():
     
     # Get lucky day and format it nicely
     lucky_day = get_lucky_day()
-    print(f"Your lucky day: {lucky_day['day']} - {lucky_day['message']}")
+    print(f"Your lucky day: {lucky_day['day']}: {lucky_day['message']}")
     
     print("\n🔮 Tarot Reading:")
     print(get_tarot_reading())
