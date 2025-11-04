@@ -120,13 +120,15 @@ Each time you run it, you’ll get a new random fortune, number, and color!
 
 ## Features
 
-| Function                 | Description                                        |
-| ------------------------ | -------------------------------------------------- |
-| `get_fortune()`          | Returns a random fortune message                   |
-| `get_lucky_number()`     | Generates a random lucky number                    |
-| `get_color()`            | Returns a random lucky color                       |
-| `get_fortune_by_choice()`| Returns a personalized fortune based on user input | 
-| `get_tarot_reading()`    | Returns a tarot card reading with interpretation   | 
+| Function | Description |
+| ----------------------------- | -------------------------------------------------------------- |
+| `get_zodiac_mbti_summary()` | Generates a complete fortune summary based on the user's Zodiac sign and MBTI type, including lucky number, color, day, and fortune message |
+| `get_tarot_reading()` | Returns a tarot card reading with interpretation |
+| `get_fortune_by_choice()` | Returns a personalized fortune based on user-selected element, time, and symbol |
+| `get_rune_reading(n=None)` | Returns a rune reading with a random number (`n`) of runes and their meanings |
+| `get_lucky_day()` | Returns a randomly selected lucky day and its symbolic meaning |
+
+
 
 ---
 
