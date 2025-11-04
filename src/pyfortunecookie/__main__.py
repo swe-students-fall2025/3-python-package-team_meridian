@@ -32,7 +32,7 @@ def parse_category_from_attribute(attr: str) -> Optional[int]:
     return None
 
 def normalize_category(cat: Optional[Union[str, int]]) -> Optional[int]:
-    """Allow 1/2/3/4/5 or names: astro|tarot|personal|rune|day."""
+    """Allow 1/2/3/4/5 or names: astro|tarot|personal|runes|day."""
     if cat is None:
         return None
     if isinstance(cat, int):
@@ -44,7 +44,7 @@ def normalize_category(cat: Optional[Union[str, int]]) -> Optional[int]:
         return 2
     if s in {"3", "personal", "personalized"}:
         return 3
-    if s in {"4", "rune", "runes"}:
+    if s in {"4", "runes", "runes"}:
         return 4
     if s in {"5", "day", "lucky_day", "luckyday"}:
         return 5
