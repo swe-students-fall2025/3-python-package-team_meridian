@@ -154,12 +154,14 @@ def main():
             print(f"Fortune: {result['fortune']}")
         
         elif cat == 4:
+            # Rune Reading
             readings = get_rune_reading()
             print("\n🔮 Rune Reading:")
             for reading in readings:
                 print(f" - {reading}")
 
         elif cat == 5:
+            # Lucky Day
             print("\n Lucky Day:")
             lucky_day = get_lucky_day()
             print(f"Day: {lucky_day['day']}")
