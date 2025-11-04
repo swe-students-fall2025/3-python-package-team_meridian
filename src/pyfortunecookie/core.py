@@ -94,6 +94,72 @@ def get_color(palette: str = "soft", rng: Optional[random.Random] = None) -> str
     rng = rng or random
     return rng.choice(_PALETTES[palette])
 
+# fortune summary influenced by zodiac/MBTI.
+def is_valid_zodiac(z: Optional[str]) -> bool:
+    """Check if zodiac string is one of 12 Western zodiac signs."""
+    if not z:
+        return False
+    z = z.strip().lower()
+    return z in {
+        "aries","taurus","gemini","cancer","leo","virgo",
+        "libra","scorpio","sagittarius","capricorn","aquarius","pisces"
+    }
+
+def is_valid_mbti(m: Optional[str]) -> bool:
+    """Check if MBTI is one of the 16 types."""
+    if not m:
+        return False
+    m = m.strip().upper()
+    return m in {
+        "INTJ","INTP","ENTJ","ENTP","INFJ","INFP","ENFJ","ENFP",
+        "ISTJ","ISFJ","ESTJ","ESFJ","ISTP","ISFP","ESTP","ESFP"
+    }
+
+def get_zodiac_mbti_summary(zodiac: Optional[str] = None,
+                         mbti: Optional[str] = None,
+                         rng: Optional[random.Random] = None) -> dict:
+   
+    rng = rng or random
+
+    # normalize inputs
+    z = (zodiac or "").strip().lower()
+    m = (mbti or "").strip().upper()
+
+    # zodiac -> palette preference (only affects color choice)
+    palette_map = {
+        "aries": "bold", "leo": "bold", "sagittarius": "bold",
+        "taurus": "mono", "virgo": "mono", "capricorn": "mono",
+        "gemini": "soft", "libra": "soft", "aquarius": "soft",
+        "cancer": "soft", "scorpio": "bold", "pisces": "soft",
+    }
+    palette = palette_map.get(z, "soft")
+
+    # MBTI tilt on fortune tone
+    prefer_action = ("T" in m) or ("J" in m)
+    prefer_idea = "N" in m
+
+    sentence = get_fortune(rng=rng)
+    if prefer_action:
+        sentence += " Take action with confidence!"
+    elif prefer_idea:
+        sentence += " Let your imagination guide you!"
+
+    # lucky color/number/day
+    color = get_color(palette=palette, rng=rng)
+    number = get_lucky_number()               
+    day = get_lucky_day(rng=rng)
+
+    return {
+        "fortune": sentence,
+        "lucky_color": color,
+        "lucky_number": number,
+        "lucky_day": day,          
+        "zodiac": z or None,
+        "mbti": m or None,
+        "palette_used": palette,
+    }
+
+
 def get_tarot_reading(intent: Optional[str] = None, rng: Optional[random.Random] = None) -> str:
     """
     Return a tarot reading with slight bias based on intent.

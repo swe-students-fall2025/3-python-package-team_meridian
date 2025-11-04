@@ -91,3 +91,51 @@ def test_get_lucky_day_valid_days():
     result = get_lucky_day()
     assert result["day"] in valid_days
     assert len(result["message"]) > 0
+
+# tests for zodiac + MBTI fortune
+from pyfortunecookie.core import (
+    get_zodiac_mbti_summary,
+    is_valid_zodiac,
+    is_valid_mbti,
+)
+
+def test_personality_summary_structure_and_types():
+    s = get_zodiac_mbti_summary(zodiac=None, mbti=None)
+    assert isinstance(s, dict)
+    # required keys
+    for k in ["fortune", "lucky_color", "lucky_number", "lucky_day"]:
+        assert k in s
+    # types
+    assert isinstance(s["fortune"], str)
+    assert isinstance(s["lucky_color"], str)
+    assert isinstance(s["lucky_number"], int)
+    assert isinstance(s["lucky_day"], dict)
+    assert "day" in s["lucky_day"] and "message" in s["lucky_day"]
+
+def test_mbti_tilt_messages():
+    """INTJ biases to action message; INFP biases to imagination message."""
+    s_action = get_zodiac_mbti_summary(zodiac="Libra", mbti="INTJ")
+    assert "Take action with confidence!" in s_action["fortune"]
+
+    s_imagination = get_zodiac_mbti_summary(zodiac="Libra", mbti="INFP")
+    assert "Let your imagination guide you!" in s_imagination["fortune"]
+
+def test_validators_accept_valid_and_reject_invalid():
+    """Validators accept real values and reject typos like 'entl'."""
+    # zodiac
+    assert is_valid_zodiac("Aries")
+    assert is_valid_zodiac("pisces")
+    assert not is_valid_zodiac("dragon")
+    assert not is_valid_zodiac("")
+    # mbti
+    assert is_valid_mbti("ENTP")
+    assert is_valid_mbti("infj")
+    assert not is_valid_mbti("entl")   # typo should be rejected
+    assert not is_valid_mbti("abcd")
+
+def test_color_present_with_zodiac():
+    """Smoke test: with a zodiac provided, summary still returns a non-empty color."""
+    s = get_zodiac_mbti_summary(zodiac="Aries", mbti=None)
+    assert isinstance(s["lucky_color"], str)
+    assert len(s["lucky_color"]) > 0
+
