@@ -6,7 +6,7 @@
 from __future__ import annotations
 import argparse
 import re
-from typing import Optional
+from typing import Optional, Union
 
 from .core import (
     get_zodiac_mbti_summary,
@@ -29,7 +29,7 @@ def parse_category_from_attribute(attr: str) -> Optional[int]:
             return None
     return None
 
-def normalize_category(cat: Optional[str | int]) -> Optional[int]:
+def normalize_category(cat: Optional[Union[str, int]]) -> Optional[int]:
     """Allow 1/2/3 or names: astro|tarot|personal."""
     if cat is None:
         return None

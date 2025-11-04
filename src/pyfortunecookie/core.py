@@ -95,7 +95,7 @@ def get_color(palette: str = "soft", rng: Optional[random.Random] = None) -> str
     return rng.choice(_PALETTES[palette])
 
 # fortune summary influenced by zodiac/MBTI.
-def is_valid_zodiac(z: str | None) -> bool:
+def is_valid_zodiac(z: Optional[str]) -> bool:
     """Check if zodiac string is one of 12 Western zodiac signs."""
     if not z:
         return False
@@ -105,7 +105,7 @@ def is_valid_zodiac(z: str | None) -> bool:
         "libra","scorpio","sagittarius","capricorn","aquarius","pisces"
     }
 
-def is_valid_mbti(m: str | None) -> bool:
+def is_valid_mbti(m: Optional[str]) -> bool:
     """Check if MBTI is one of the 16 types."""
     if not m:
         return False
