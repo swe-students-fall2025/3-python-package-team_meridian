@@ -9,6 +9,7 @@ import re
 from typing import Optional, Union
 
 from .core import (
+    get_lucky_day,
     get_zodiac_mbti_summary,
     get_tarot_reading,
     get_fortune_by_choice,
@@ -31,11 +32,11 @@ def parse_category_from_attribute(attr: str) -> Optional[int]:
     return None
 
 def normalize_category(cat: Optional[Union[str, int]]) -> Optional[int]:
-    """Allow 1/2/3 or names: astro|tarot|personal."""
+    """Allow 1/2/3/4/5 or names: astro|tarot|personal|rune|day."""
     if cat is None:
         return None
     if isinstance(cat, int):
-        return cat if cat in (1, 2, 3) else None
+        return cat if cat in (1, 2, 3, 4, 5) else None
     s = str(cat).strip().lower()
     if s in {"1", "astro", "astrology", "zodiac"}:
         return 1
@@ -43,6 +44,10 @@ def normalize_category(cat: Optional[Union[str, int]]) -> Optional[int]:
         return 2
     if s in {"3", "personal", "personalized"}:
         return 3
+    if s in {"4", "rune", "runes"}:
+        return 4
+    if s in {"5", "day", "lucky_day", "luckyday"}:
+        return 5
     return None
 
 def ask_choice(label: str, options: list[str]) -> str:
@@ -66,6 +71,8 @@ def main():
                         help="Your MBTI (e.g., INFP, ESTJ) for category 1")
     parser.add_argument("--no-input", action="store_true",
                         help="Skip zodiac/MBTI prompts for category 1")
+    parser.add_argument("--rune-reading", type=str, default=None,
+                        help="Get a rune reading for category 4")
     args = parser.parse_args()
 
     print("🥠 Welcome to PyFortune Cookie!")
@@ -143,7 +150,17 @@ def main():
             print(f"Symbol: {result['symbol']}")
             print(f"Combination: {result['combination']}")
             print(f"Fortune: {result['fortune']}")
+        
+        elif cat == 4:
+            readings = get_rune_reading()
+            print("\n🔮 Rune Reading:")
+            for reading in readings:
+                print(f" - {reading}")
 
+        elif cat == 5:
+            print("\n Lucky Day:")
+            lucky_day = get_lucky_day()
+            print(f"Day: {lucky_day['day']}")
         else:
             print("Unknown category. Please choose 1, 2, or 3.")
 
