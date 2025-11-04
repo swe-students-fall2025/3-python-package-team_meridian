@@ -106,15 +106,88 @@ pipenv run pyfortunecookie
 
 You might see something like this:
 
+### Welcome Screen
 ```
+
 🥠 Welcome to PyFortune Cookie!
 
-Today's fortune: Your curiosity will lead to something amazing today ✨
-Your lucky number: 37
-Your lucky color: Lavender
+Select a category:
+
+1. Zodiac & MBTI Summary
+2. Tarot Reading
+3. Personalized Fortune
+4. Rune Reading
+5. Lucky Day
+   Enter 1 / 2 / 3 / 4 / 5:
+
 ```
 
-Each time you run it, you’ll get a new random fortune, number, and color!
+### Category 1 – Zodiac & MBTI Summary
+```
+
+Enter your zodiac (e.g., Aries, Libra, Pisces): Libra
+Enter your MBTI (e.g., INFP, ESTJ): INFP
+
+🌙 Your Fortune Summary 🌙
+Zodiac: Libra | MBTI: INFP
+Fortune: Your curiosity is your superpower. 🔍 Let your imagination guide you!
+Lucky Number: 42
+Lucky Color: lavender
+Lucky Day: Friday - A blessed day awaits you.
+
+```
+
+### Category 2 – Tarot Reading
+```
+
+🔮 Tarot Reading:
+The Star: Hope quietly returns.
+
+```
+
+### Category 3 – Personalized Fortune
+```
+
+🎴 Personalized Fortune (by your choices):
+Choose an element ['fire', 'water', 'earth', 'air']: fire
+Choose a time ['dawn', 'noon', 'dusk', 'midnight']: dawn
+Choose a symbol ['star', 'moon', 'sun', 'cloud']: star
+
+✨ Your Personalized Fortune ✨
+Element: fire
+Time: dawn
+Symbol: star
+Combination: You are passionate and energetic, seeking new beginnings, guided by guidance and aspiration.
+Fortune: 🔥 🌅 ⭐ Reach for the stars; they're closer than you think!
+
+```
+
+### Category 4 – Rune Reading
+```
+
+🔮 Rune Reading:
+
+* Gebo: Gift, partnership, generosity.
+* Ansuz: Wisdom, communication, divine inspiration.
+* Wunjo: Joy, harmony, well-being.
+
+```
+
+### Category 5 – Lucky Day
+```
+
+☀️ Lucky Day:
+Day: Tuesday - Your determination will pay off today.
+
+```
+
+### Exit
+```
+
+Would you like to choose another category? (y/n): n
+🌟 Thank you for using PyFortune Cookie! Goodbye! 🌟
+
+```
 
 ---
 
@@ -147,7 +220,7 @@ All tests are located inside the `tests/` directory.
 ## Project Structure
 
 ```
-pyfortunecookie/
+3-python-package-team_meridian/
 ├── src/
 │   └── pyfortunecookie/
 │       ├── __init__.py
