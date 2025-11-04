@@ -166,7 +166,7 @@ def main():
             lucky_day = get_lucky_day()
             print(f"Day: {lucky_day['day']}")
         else:
-            print("Unknown category. Please choose 1, 2, or 3.")
+            print("Unknown category. Please choose 1, 2, 3, 4 or 5.")
 
         # Ask if user wants to continue / exit
         again = input("\nWould you like to choose another category? (y/n): ").strip().lower()
