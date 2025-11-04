@@ -106,11 +106,13 @@ Each time you run it, you’ll get a new random fortune, number, and color!
 
 ## Features
 
-| Function             | Description                      |
-| -------------------- | -------------------------------- |
-| `get_fortune()`      | Returns a random fortune message |
-| `get_lucky_number()` | Generates a random lucky number  |
-| `get_color()`        | Returns a random lucky color     |
+| Function                 | Description                                        |
+| ------------------------ | -------------------------------------------------- |
+| `get_fortune()`          | Returns a random fortune message                   |
+| `get_lucky_number()`     | Generates a random lucky number                    |
+| `get_color()`            | Returns a random lucky color                       |
+| `get_fortune_by_choice()`| Returns a personalized fortune based on user input | 
+| `get_tarot_reading()`    | Returns a tarot card reading with interpretation   | 
 
 ---
 
