@@ -12,6 +12,7 @@ from .core import (
     get_zodiac_mbti_summary,
     get_tarot_reading,
     get_fortune_by_choice,
+    get_rune_reading,
     is_valid_zodiac, 
     is_valid_mbti
 )
