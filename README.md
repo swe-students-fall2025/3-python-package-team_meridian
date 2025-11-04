@@ -13,7 +13,7 @@ PyFortuneCookie is a Python package that generates your **daily fortune cookie**
 
 [Daniel Huang](https://github.com/DplayerXAX)
 
-[Togawa Saki](https://github.com/TogawaSaki0214)
+[Haonan Cai](https://github.com/TogawaSaki0214)
 
 [Abdul Mendahawi](https://github.com/amendahawi)
 
