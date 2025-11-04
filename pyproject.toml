@@ -5,13 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pyfortunecookie"
 description = "A fun fortune cookie generator with lucky number and color"
-version = "0.1.1"
+version = "0.1.2"
 authors = [
   { name="SinaL0123", email="sl9608@nyu.edu" },
-  { name = "DplayerXAX" },
-  { name = "aayanmathur" },
-  { name = "TogawaSaki0214" },
-  { name = "TickyTacky" }
+  { name = "DplayerXAX", email="danielhuang0905@outlook.com" },
+  { name = "aayanmathur", email="am12611@nyu.edu"},
+  { name = "TogawaSaki0214", email="am12611@nyu.edu" },
+  { name = "TickyTacky", email="am12611@nyu.edu" }
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
