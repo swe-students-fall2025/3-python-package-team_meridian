@@ -86,12 +86,14 @@ def main():
             print("  1) Zodiac & MBTI Summary")
             print("  2) Tarot Reading")
             print("  3) Personalized Fortune")
+            print("  4) Rune Reading")
+            print("  5) Lucky Day")
             while True:
-                raw = input("Enter 1 / 2 / 3: ").strip()
-                if raw in {"1", "2", "3"}:
+                raw = input("Enter 1 / 2 / 3 / 4 / 5: ").strip()
+                if raw in {"1", "2", "3", "4", "5"}:
                     cat = int(raw)
                     break
-                print("Please enter 1, 2, or 3.")
+                print("Please enter number between 1-5.")
 
         # Run category
         if cat == 1:
