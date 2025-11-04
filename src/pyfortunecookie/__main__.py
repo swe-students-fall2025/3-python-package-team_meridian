@@ -2,6 +2,8 @@
 #   1 = Zodiac & MBTI Summary - Written By Sina
 #   2 = Tarot Reading
 #   3 = Personalized Fortune
+#   4 = Rune Reading
+#   5 = Lucky Day
 
 from __future__ import annotations
 import argparse
@@ -9,9 +11,11 @@ import re
 from typing import Optional, Union
 
 from .core import (
+    get_lucky_day,
     get_zodiac_mbti_summary,
     get_tarot_reading,
     get_fortune_by_choice,
+    get_rune_reading,
     is_valid_zodiac, 
     is_valid_mbti
 )
@@ -30,11 +34,11 @@ def parse_category_from_attribute(attr: str) -> Optional[int]:
     return None
 
 def normalize_category(cat: Optional[Union[str, int]]) -> Optional[int]:
-    """Allow 1/2/3 or names: astro|tarot|personal."""
+    """Allow 1/2/3/4/5 or names: astro|tarot|personal|runes|day."""
     if cat is None:
         return None
     if isinstance(cat, int):
-        return cat if cat in (1, 2, 3) else None
+        return cat if cat in (1, 2, 3, 4, 5) else None
     s = str(cat).strip().lower()
     if s in {"1", "astro", "astrology", "zodiac"}:
         return 1
@@ -42,6 +46,10 @@ def normalize_category(cat: Optional[Union[str, int]]) -> Optional[int]:
         return 2
     if s in {"3", "personal", "personalized"}:
         return 3
+    if s in {"4", "runes", "runes"}:
+        return 4
+    if s in {"5", "day", "lucky_day", "luckyday"}:
+        return 5
     return None
 
 def ask_choice(label: str, options: list[str]) -> str:
@@ -65,6 +73,8 @@ def main():
                         help="Your MBTI (e.g., INFP, ESTJ) for category 1")
     parser.add_argument("--no-input", action="store_true",
                         help="Skip zodiac/MBTI prompts for category 1")
+    parser.add_argument("--rune-reading", type=str, default=None,
+                        help="Get a rune reading for category 4")
     args = parser.parse_args()
 
     print("🥠 Welcome to PyFortune Cookie!")
@@ -78,12 +88,14 @@ def main():
             print("  1) Zodiac & MBTI Summary")
             print("  2) Tarot Reading")
             print("  3) Personalized Fortune")
+            print("  4) Rune Reading")
+            print("  5) Lucky Day")
             while True:
-                raw = input("Enter 1 / 2 / 3: ").strip()
-                if raw in {"1", "2", "3"}:
+                raw = input("Enter 1 / 2 / 3 / 4 / 5: ").strip()
+                if raw in {"1", "2", "3", "4", "5"}:
                     cat = int(raw)
                     break
-                print("Please enter 1, 2, or 3.")
+                print("Please enter number between 1-5.")
 
         # Run category
         if cat == 1:
@@ -116,8 +128,7 @@ def main():
                 print(f"Fortune: {summary['fortune']}")
                 print(f"Lucky Number: {summary['lucky_number']}")
                 print(f"Lucky Color: {summary['lucky_color']}")
-                print(f"Lucky Day: {summary['lucky_day']['day']} - {summary['lucky_day']['message']}")
-
+                
         elif cat == 2:
             # Tarot Reading
             print("\n🔮 Tarot Reading:")
@@ -142,9 +153,21 @@ def main():
             print(f"Symbol: {result['symbol']}")
             print(f"Combination: {result['combination']}")
             print(f"Fortune: {result['fortune']}")
+        
+        elif cat == 4:
+            # Rune Reading
+            readings = get_rune_reading()
+            print("\n🔮 Rune Reading:")
+            for reading in readings:
+                print(f" - {reading}")
 
+        elif cat == 5:
+            # Lucky Day
+            print("\n Lucky Day:")
+            lucky_day = get_lucky_day()
+            print(f"Day: {lucky_day['day']}")
         else:
-            print("Unknown category. Please choose 1, 2, or 3.")
+            print("Unknown category. Please choose 1, 2, 3, 4 or 5.")
 
         # Ask if user wants to continue / exit
         again = input("\nWould you like to choose another category? (y/n): ").strip().lower()
