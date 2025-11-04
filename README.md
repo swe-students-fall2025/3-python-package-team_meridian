@@ -1,4 +1,5 @@
 [![CI / CD](https://github.com/swe-students-fall2025/3-python-package-team_meridian/actions/workflows/build.yaml/badge.svg)](https://github.com/swe-students-fall2025/3-python-package-team_meridian/actions/workflows/build.yaml)
+
 PyPI: https://pypi.org/project/PyFortuneCookie/
 
 # PyFortuneCookie
@@ -7,9 +8,13 @@ PyFortuneCookie is a Python package that generates your **daily fortune cookie**
 
 ## Team Members
 [Sina Liu](https://github.com/SinaL0123)
+
 [Aayan Mathur](https://github.com/aayanmathur)
+
 [Daniel Huang](https://github.com/DplayerXAX)
+
 [Togawa Saki](https://github.com/TogawaSaki0214)
+
 [Abdul Mendahawi](https://github.com/amendahawi)
 
 ---
