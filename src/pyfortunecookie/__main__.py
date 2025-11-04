@@ -2,6 +2,8 @@
 #   1 = Zodiac & MBTI Summary - Written By Sina
 #   2 = Tarot Reading
 #   3 = Personalized Fortune
+#   4 = Rune Reading
+#   5 = Lucky Day
 
 from __future__ import annotations
 import argparse
@@ -123,7 +125,11 @@ def main():
                 print("\n🌙 Your Fortune Summary 🌙")
                 if summary["zodiac"] or summary["mbti"]:
                     print(f"Zodiac: {summary['zodiac'].title() if summary['zodiac'] else '-'} | MBTI: {summary['mbti'] or '-'}")
-                
+                print(f"Fortune: {summary['fortune']}")
+                print(f"Lucky Number: {summary['lucky_number']}")
+                print(f"Lucky Color: {summary['lucky_color']}")
+                print(f"Lucky Day: {summary['lucky_day']['day']} - {summary['lucky_day']['message']}")
+
         elif cat == 2:
             # Tarot Reading
             print("\n🔮 Tarot Reading:")
