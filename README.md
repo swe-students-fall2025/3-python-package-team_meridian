@@ -1,6 +1,6 @@
 [![CI / CD](https://github.com/swe-students-fall2025/3-python-package-team_meridian/actions/workflows/build.yaml/badge.svg)](https://github.com/swe-students-fall2025/3-python-package-team_meridian/actions/workflows/build.yaml)
 
-PyPI: [https://pypi.org/project/pyfortunecookie-teammeridian/](https://pypi.org/project/pyfortunecookie-teammeridian/
+PyPI: https://pypi.org/project/pyfortunecookie-teammeridian/
 
 # PyFortuneCookie
 
