@@ -8,7 +8,7 @@ examplepackagefb1258 = {file = ".", editable = true}
 coverage = "*"
 pytest-cov = "*"
 twine = "*"
-pyfortunecookie = {file = ".", editable = true, path = "./src/pyfortunecookie"}
+pyfortunecookie = {file = ".", editable = true}
 pytest = "*"
 build = "*"
 
