@@ -78,20 +78,30 @@ You can run PyFortuneCookie either from the **command line** or directly as a **
 pipenv run pyfortunecookie
 ```
 
-### ▶️ Option 2: Run as a Python module
+### ▶️ Option 2: Python Import
+Before running the following examples, make sure you are using **Python 3** (e.g., `python3` or `pipenv run python`).
 
 ```bash
-pipenv run python -m pyfortunecookie
+python3
 ```
 
-### ▶️ Option 3: Import and use functions in your code
-
+Then import and call functions interactively:
 ```python
-from pyfortunecookie.core import get_fortune, get_lucky_number, get_color
+from pprint import pprint
+from pyfortunecookie.core import (
+    get_zodiac_mbti_summary,
+    get_tarot_reading,
+    get_fortune_by_choice,
+    get_rune_reading,
+    get_lucky_day
+)
 
-print(get_fortune())
-print(get_lucky_number())
-print(get_color())
+# Example usages
+pprint(get_zodiac_mbti_summary("Libra", "INFP"))
+pprint(get_tarot_reading())
+pprint(get_fortune_by_choice("fire", "dawn", "star"))
+pprint(get_rune_reading())
+pprint(get_lucky_day())
 ```
 
 ---
